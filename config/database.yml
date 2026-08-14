@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
+  username: <%= ENV.fetch("DATABASE_USER") { "postgres" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "password" } %>
+
+development:
+  <<: *default
+  database: todo_manager_development
+
+test:
+  <<: *default
+  database: todo_manager_test
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { "todo_manager_production" } %>
