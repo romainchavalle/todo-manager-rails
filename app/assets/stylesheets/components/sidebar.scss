@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   background-color: var(--bg-card);
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--border-strong);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
   flex-shrink: 0;
 }
 
@@ -55,8 +55,8 @@
 .sidebar-version {
   font-size: 0.7rem;
   font-weight: 600;
-  color: var(--text-dim);
-  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  background-color: var(--bg-main);
   padding: 1px 5px;
   border-radius: 4px;
 }
@@ -105,19 +105,19 @@
 }
 
 .nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-subtle);
   color: var(--text-main);
 }
 
 .nav-item--active {
   background-color: var(--primary-light);
-  color: #818cf8;
+  color: var(--primary);
   font-weight: 600;
 }
 
 .sidebar-bottom {
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border);
 }
 
 .sidebar-user-card {
@@ -125,7 +125,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px;
-  background-color: rgba(15, 23, 42, 0.5);
+  background-color: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
 }

@@ -4,20 +4,19 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.08), transparent 40%),
+  background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent 45%),
+              radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.06), transparent 45%),
               var(--bg-main);
 }
 
 .auth-card {
   background-color: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 40px;
   width: 100%;
   max-width: 440px;
   box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(12px);
 }
 
 .auth-header {
@@ -29,7 +28,7 @@
   width: 48px;
   height: 48px;
   background: linear-gradient(135deg, var(--primary), #818cf8);
-  color: #fff;
+  color: #ffffff;
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
@@ -37,13 +36,14 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 
 .auth-title {
   margin: 0 0 8px 0;
   font-size: 1.6rem;
   font-weight: 700;
+  color: var(--text-main);
   letter-spacing: -0.025em;
 }
 
@@ -54,8 +54,8 @@
 }
 
 .demo-auth-box {
-  background-color: rgba(15, 23, 42, 0.5);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
+  background-color: var(--bg-subtle);
+  border: 1px dashed var(--border-strong);
   border-radius: var(--radius-md);
   padding: 12px;
   margin-bottom: 20px;
@@ -67,7 +67,7 @@
 .demo-auth-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-dim);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -79,10 +79,10 @@
 
 .btn-demo-pill {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #ffffff;
   border: 1px solid var(--border);
   color: var(--text-main);
-  padding: 6px 8px;
+  padding: 7px 8px;
   border-radius: var(--radius-sm);
   font-size: 0.78rem;
   font-weight: 500;
@@ -90,21 +90,22 @@
   transition: var(--transition);
   text-align: center;
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-demo-pill:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-main);
   transform: translateY(-1px);
 }
 
 .btn-demo-manager:hover {
-  border-color: rgba(124, 58, 237, 0.6);
-  color: #c4b5fd;
+  border-color: #8b5cf6;
+  color: #6d28d9;
 }
 
 .btn-demo-employee:hover {
-  border-color: rgba(14, 165, 233, 0.6);
-  color: #7dd3fc;
+  border-color: #0284c7;
+  color: #0369a1;
 }
 
 .auth-form {
@@ -129,7 +130,7 @@
 }
 
 .auth-link {
-  color: #818cf8;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
 }
@@ -139,11 +140,11 @@
 }
 
 .auth-link-subtle {
-  color: var(--text-dim);
+  color: var(--text-muted);
   text-decoration: none;
 }
 
 .auth-link-subtle:hover {
-  color: var(--text-muted);
+  color: var(--text-main);
   text-decoration: underline;
 }
