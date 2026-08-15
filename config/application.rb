@@ -24,7 +24,6 @@ module TodoManager
     # Domain-Driven / Feature-Based Architecture paths
     domain_paths = Dir[Rails.root.join("app", "domains", "*", "{models,controllers,services,queries,policies,helpers}")]
     config.autoload_paths += domain_paths
-    config.eager_load_paths += domain_paths
     config.paths["app/views"].unshift(*Dir[Rails.root.join("app", "domains", "*", "views")])
   end
 end

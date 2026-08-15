@@ -25,3 +25,6 @@ Thumbs.db
 # Ignore IDE files
 /.idea
 /.vscode
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
