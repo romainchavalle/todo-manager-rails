@@ -1,19 +1,31 @@
-<div class="auth-card">
+<div class="auth-card" data-controller="demo-auth">
   <div class="auth-header">
     <div class="auth-logo">✓</div>
     <h1 class="auth-title">Connexion</h1>
     <p class="auth-subtitle">Accédez à votre espace de gestion des tâches</p>
   </div>
 
+  <div class="demo-auth-box">
+    <span class="demo-auth-label">Comptes de Démo :</span>
+    <div class="demo-auth-buttons">
+      <button type="button" class="btn-demo-pill btn-demo-manager" data-action="click->demo-auth#fillManager">
+        👑 Jean (Manager)
+      </button>
+      <button type="button" class="btn-demo-pill btn-demo-employee" data-action="click->demo-auth#fillEmployee">
+        👤 Alice (Employé)
+      </button>
+    </div>
+  </div>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth-form" }) do |f| %>
     <div class="form-group">
       <%= f.label :email, "Adresse email", class: "form-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-input", placeholder: "nom@entreprise.com" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-input", placeholder: "nom@entreprise.com", data: { demo_auth_target: "email" } %>
     </div>
 
     <div class="form-group">
       <%= f.label :password, "Mot de passe", class: "form-label" %>
-      <%= f.password_field :password, autocomplete: "current-password", required: true, class: "form-input", placeholder: "••••••••" %>
+      <%= f.password_field :password, autocomplete: "current-password", required: true, class: "form-input", placeholder: "••••••••", data: { demo_auth_target: "password" } %>
     </div>
 
     <% if devise_mapping.rememberable? %>
