@@ -1,11 +1,11 @@
-// Base
-@import "base/variables";
-@import "base/reset";
+﻿// Base
+@use "base/variables";
+@use "base/reset";
 
 // Components
-@import "components/buttons";
-@import "components/forms";
-@import "components/alerts";
+@use "components/buttons";
+@use "components/forms";
+@use "components/alerts";
 
-// Domaines Métiers
-@import "domains/auth";
+// Domaines Metiers
+@use "domains/auth";
