@@ -1,0 +1,46 @@
+<div class="auth-card">
+  <div class="auth-header">
+    <div class="auth-logo">✓</div>
+    <h1 class="auth-title">Créer un compte</h1>
+    <p class="auth-subtitle">Rejoignez l'équipe pour gérer vos tâches quotidiennes</p>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "auth-form" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-row">
+      <div class="form-group">
+        <%= f.label :first_name, "Prénom", class: "form-label" %>
+        <%= f.text_field :first_name, autofocus: true, required: true, class: "form-input", placeholder: "Jean" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :last_name, "Nom", class: "form-label" %>
+        <%= f.text_field :last_name, required: true, class: "form-input", placeholder: "Dupont" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, "Adresse email", class: "form-label" %>
+      <%= f.email_field :email, autocomplete: "email", required: true, class: "form-input", placeholder: "nom@entreprise.com" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "Mot de passe", class: "form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true, class: "form-input", placeholder: "6 caractères minimum" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirmation du mot de passe", class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-input", placeholder: "Répétez votre mot de passe" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Créer mon compte", class: "btn btn-primary btn-block" %>
+    </div>
+  <% end %>
+
+  <div class="auth-footer">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
