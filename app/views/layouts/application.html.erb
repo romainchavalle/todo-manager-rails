@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title><%= content_for(:title) || "TodoManager - Gestion de Tâches" %></title>
+    <title><%= content_for(:title) || "TodoManager" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,10 +11,16 @@
   </head>
 
   <body>
-    <%= render "shared/flash" %>
+    <div class="app-layout <%= "app-layout--fullwidth" if content_for?(:no_sidebar) %>">
+      <%= render "shared/sidebar" unless content_for?(:no_sidebar) %>
 
-    <main class="main-container">
-      <%= yield %>
-    </main>
+      <div class="app-content">
+        <%= render "shared/flash" %>
+
+        <main class="main-body">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

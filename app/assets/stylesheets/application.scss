@@ -1,8 +1,11 @@
-﻿// Base
+// Base
 @use "base/variables";
 @use "base/reset";
 
 // Components
+@use "components/layout";
+@use "components/sidebar";
+@use "components/badges";
 @use "components/buttons";
 @use "components/forms";
 @use "components/alerts";

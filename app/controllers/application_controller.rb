@@ -1,4 +1,6 @@
-﻿class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
+  helper :all
+
   allow_browser versions: :modern
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -19,6 +21,6 @@
   private
 
   def layout_by_resource
-    devise_controller? ? "auth" : "application"
+    devise_controller? ? 'auth' : 'application'
   end
 end

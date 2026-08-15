@@ -1,4 +1,14 @@
-<div class="welcome-container">
-  <h1>TodoManager</h1>
-  <p>Application Rails 7.2 + Hotwire + PostgreSQL</p>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Bonjour, <%= current_user.first_name %> 👋</h1>
+    <p class="page-subtitle">Bienvenue sur votre espace de travail <strong><%= current_user.manager? ? "Manager" : "Collaborateur" %></strong>.</p>
+  </div>
+</div>
+
+<div class="welcome-card">
+  <div class="welcome-card-icon">🚀</div>
+  <div class="welcome-card-content">
+    <h3>Prêt pour la gestion des tâches</h3>
+    <p>Votre session est active et sécurisée. Dès l'étape suivante, vous pourrez créer, assigner et suivre l'avancement de vos tâches et projets.</p>
+  </div>
 </div>
