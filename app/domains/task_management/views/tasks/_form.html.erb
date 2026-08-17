@@ -1,0 +1,58 @@
+<%= form_with(model: task, class: "auth-form") do |f| %>
+  <% if task.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(task.errors.count, "erreur") %> ont empêché l'enregistrement :</strong>
+      <ul class="alert-list">
+        <% task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if current_user.manager? %>
+    <div class="form-group">
+      <%= f.label :title, "Titre de la tâche", class: "form-label" %>
+      <%= f.text_field :title, autofocus: true, required: true, class: "form-input", placeholder: "Ex : Rédiger la documentation API" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Description (facultative)", class: "form-label" %>
+      <%= f.text_area :description, rows: 3, class: "form-input", placeholder: "Détails de la tâche..." %>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <%= f.label :priority, "Priorité", class: "form-label" %>
+        <%= f.select :priority, task_priority_options, {}, class: "filter-select", style: "width: 100%;" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :status, "Statut", class: "form-label" %>
+        <%= f.select :status, task_status_options, {}, class: "filter-select", style: "width: 100%;" %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <%= f.label :project_id, "Projet associé", class: "form-label" %>
+        <%= f.collection_select :project_id, @projects, :id, :name, { include_blank: "-- Aucun projet --" }, class: "filter-select", style: "width: 100%;" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :assignee_id, "Assigner à", class: "form-label" %>
+        <%= f.collection_select :assignee_id, @users, :id, :full_name, { include_blank: "-- Non assignée --" }, class: "filter-select", style: "width: 100%;" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :status, "Statut de la tâche", class: "form-label" %>
+      <%= f.select :status, task_status_options, {}, class: "filter-select", style: "width: 100%;" %>
+    </div>
+  <% end %>
+
+  <div class="form-actions" style="display: flex; gap: 12px; margin-top: 8px;">
+    <%= f.submit task.persisted? ? "Mettre à jour la tâche" : "Créer la tâche", class: "btn btn-primary" %>
+    <%= link_to "Annuler", tasks_path, class: "btn btn-filter-reset" %>
+  </div>
+<% end %>
