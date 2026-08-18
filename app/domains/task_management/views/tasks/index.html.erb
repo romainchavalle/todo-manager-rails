@@ -2,7 +2,7 @@
   <div>
     <h1 class="page-title">Gestion des Tâches</h1>
     <p class="page-subtitle">
-      <% if current_user.manager? %>
+      <% if policy(Task).create? %>
         Supervisez et assignez les tâches de l'ensemble de l'équipe.
       <% else %>
         Consultez et mettez à jour vos tâches assignées.
@@ -21,22 +21,22 @@
   <% end %>
 </div>
 
-<%= form_with url: tasks_path, method: :get, data: { controller: "tasks-filter", turbo_frame: "tasks_list" }, class: "tasks-filter-bar" do |f| %>
-  <%= f.text_field :q, value: params[:q], placeholder: "Rechercher une tâche...", class: "filter-search-input", data: { action: "input->tasks-filter#search" } %>
+<%= form_with url: tasks_path, method: :get, data: { controller: "filter", turbo_frame: "tasks_list" }, class: "filter-bar" do |f| %>
+  <%= f.text_field :q, value: params[:q], placeholder: "Rechercher une tâche...", class: "filter-search-input", data: { action: "input->filter#search" } %>
 
-  <%= f.select :status, options_for_select([["Tous les statuts", ""]] + task_status_options, params[:status]), {}, class: "filter-select", data: { action: "change->tasks-filter#submit" } %>
+  <%= f.select :status, options_for_select([["Tous les statuts", ""]] + task_status_options, params[:status]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
 
-  <%= f.select :priority, options_for_select([["Toutes les priorités", ""]] + task_priority_options, params[:priority]), {}, class: "filter-select", data: { action: "change->tasks-filter#submit" } %>
+  <%= f.select :priority, options_for_select([["Toutes les priorités", ""]] + task_priority_options, params[:priority]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
 
   <% if @projects.any? %>
-    <%= f.select :project_id, options_for_select([["Tous les projets", ""]] + @projects.map { |p| [p.name, p.id] }, params[:project_id]), {}, class: "filter-select", data: { action: "change->tasks-filter#submit" } %>
+    <%= f.select :project_id, options_for_select([["Tous les projets", ""]] + @projects.map { |p| [p.name, p.id] }, params[:project_id]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
   <% end %>
 
   <% if policy(User).index? && @users.any? %>
-    <%= f.select :assignee_id, options_for_select([["Tous les assignés", ""]] + @users.map { |u| [u.full_name, u.id] }, params[:assignee_id]), {}, class: "filter-select", data: { action: "change->tasks-filter#submit" } %>
+    <%= f.select :assignee_id, options_for_select([["Tous les assignés", ""]] + @users.map { |u| [u.full_name, u.id] }, params[:assignee_id]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
   <% end %>
 
-  <button type="button" class="btn-filter-reset" data-tasks-filter-target="resetButton" data-action="click->tasks-filter#reset" style="display: none; border: none; background: none; cursor: pointer;">
+  <button type="button" class="btn-filter-reset" data-filter-target="resetButton" data-action="click->filter#reset" style="display: none;">
     ✕ Réinitialiser
   </button>
 <% end %>

@@ -22,7 +22,7 @@ export default class extends Controller {
 
   reset(event) {
     event.preventDefault()
-    this.element.querySelectorAll("input[type=text]").forEach(input => input.value = "")
+    this.element.querySelectorAll("input[type=text], input[type=search]").forEach(input => input.value = "")
     this.element.querySelectorAll("select").forEach(select => select.selectedIndex = 0)
     this.toggleResetButton()
     this.element.requestSubmit()
@@ -31,8 +31,8 @@ export default class extends Controller {
   toggleResetButton() {
     if (!this.hasResetButtonTarget) return
     const hasValues = Array.from(this.element.elements).some(el => {
-      if (el.tagName === "INPUT" && el.type === "text") return el.value.trim() !== ""
-      if (el.tagName === "SELECT") return el.value !== ""
+      if ((el.tagName === "INPUT" && (el.type === "text" || el.type === "search")) && el.value.trim() !== "") return true
+      if (el.tagName === "SELECT" && el.value !== "") return true
       return false
     })
     this.resetButtonTarget.style.display = hasValues ? "inline-flex" : "none"
