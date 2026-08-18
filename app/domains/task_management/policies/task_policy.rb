@@ -26,7 +26,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def update?
-    user.manager? || record.assignee_id == user.id
+    user.manager?
   end
 
   def edit?
@@ -38,7 +38,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def change_status?
-    update?
+    user.manager? || record.assignee_id == user.id
   end
 
   def permitted_attributes

@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(project_id: params[:project_id])
     authorize @task
     load_form_collections
   end
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    authorize @task, :update?
+    authorize @task, :change_status?
 
     if Task.statuses.key?(params[:status])
       @task.update(status: params[:status])
