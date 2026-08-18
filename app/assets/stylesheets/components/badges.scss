@@ -23,7 +23,7 @@
   border: 1px solid #bae6fd;
 }
 
-// Task Status Badges
+// Status Badges (Tasks & Projects)
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -45,10 +45,17 @@
   border: 1px solid #bfdbfe;
 }
 
-.status-badge--completed {
+.status-badge--completed,
+.status-badge--active {
   background-color: #f0fdf4;
   color: #16a34a;
   border: 1px solid #bbf7d0;
+}
+
+.status-badge--archived {
+  background-color: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
 }
 
 // Priority Badges

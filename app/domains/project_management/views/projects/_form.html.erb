@@ -1,0 +1,46 @@
+<%= form_with(model: project, class: "auth-form") do |f| %>
+  <% if project.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(project.errors.count, "erreur") %> ont empêché l'enregistrement :</strong>
+      <ul class="alert-list">
+        <% project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "Nom du projet", class: "form-label" %>
+    <%= f.text_field :name, autofocus: true, required: true, class: "form-input", placeholder: "Ex : Refonte du Design System" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Description (facultative)", class: "form-label" %>
+    <%= f.text_area :description, rows: 3, class: "form-input", placeholder: "Objectifs et périmètre du projet..." %>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <%= f.label :status, "Statut", class: "form-label" %>
+      <%= f.select :status, project_status_options, {}, class: "filter-select", style: "width: 100%;" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :color, "Couleur du projet", class: "form-label" %>
+      <div class="color-picker-grid">
+        <% project_preset_colors.each do |name, hex| %>
+          <label class="color-swatch-label" title="<%= name %>">
+            <%= f.radio_button :color, hex, class: "color-swatch-radio" %>
+            <span class="color-swatch-circle" style="background-color: <%= hex %>;"></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions" style="display: flex; gap: 12px; margin-top: 16px;">
+    <%= f.submit project.persisted? ? "Mettre à jour le projet" : "Créer le projet", class: "btn btn-primary" %>
+    <%= link_to "Annuler", projects_path, class: "btn btn-filter-reset" %>
+  </div>
+<% end %>

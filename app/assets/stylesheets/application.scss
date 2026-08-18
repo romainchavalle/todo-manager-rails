@@ -10,7 +10,9 @@
 @use "components/forms";
 @use "components/alerts";
 @use "components/empty_state";
+@use "components/filter_bar";
 
 // Domains
 @use "domains/auth";
 @use "domains/tasks";
+@use "domains/projects";
