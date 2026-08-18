@@ -1,7 +1,11 @@
 class ProjectPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      scope.all
+      if user.manager?
+        scope.all
+      else
+        scope.active
+      end
     end
   end
 
@@ -10,18 +14,30 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.manager? || record.active?
   end
 
   def create?
     user.manager?
   end
 
+  def new?
+    create?
+  end
+
   def update?
     user.manager?
   end
 
+  def edit?
+    update?
+  end
+
   def destroy?
     user.manager?
+  end
+
+  def permitted_attributes
+    %i[name description color status]
   end
 end
