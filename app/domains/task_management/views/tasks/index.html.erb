@@ -28,6 +28,8 @@
 
   <%= f.select :priority, options_for_select([["Toutes les priorités", ""]] + task_priority_options, params[:priority]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
 
+  <%= f.select :complexity, options_for_select([["Toutes les complexités", ""]] + task_complexity_options, params[:complexity]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
+
   <% if @projects.any? %>
     <%= f.select :project_id, options_for_select([["Tous les projets", ""]] + @projects.map { |p| [p.name, p.id] }, params[:project_id]), {}, class: "filter-select", data: { action: "change->filter#submit" } %>
   <% end %>

@@ -43,7 +43,7 @@ class TaskPolicy < ApplicationPolicy
 
   def permitted_attributes
     if user.manager?
-      %i[title description status priority assignee_id project_id]
+      %i[title description status priority complexity assignee_id project_id]
     else
       %i[status]
     end
