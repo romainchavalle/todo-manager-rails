@@ -13,10 +13,21 @@ class Project < ApplicationRecord
     where("name ILIKE :q OR description ILIKE :q", q: "%#{q}%")
   }
 
+  def total_effort_points
+    tasks.sum(&:complexity_points)
+  end
+
+  def completed_effort_points
+    tasks.select(&:completed?).sum(&:complexity_points)
+  end
+
+  def remaining_effort_points
+    total_effort_points - completed_effort_points
+  end
+
   def completion_percentage
-    return 0 if tasks.empty?
-    completed = tasks.count { |t| t.completed? }
-    ((completed.to_f / tasks.size) * 100).round
+    return 0 if total_effort_points.zero?
+    ((completed_effort_points.to_f / total_effort_points) * 100).round
   end
 
   def total_tasks_count

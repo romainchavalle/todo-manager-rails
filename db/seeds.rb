@@ -1,13 +1,14 @@
-User.destroy_all
-Project.destroy_all
+puts "Nettoyage de la base de données..."
 Task.destroy_all
+Project.destroy_all
+User.destroy_all
 
+puts "Création des utilisateurs..."
 manager = User.create!(
   first_name: "Jean",
-  last_name: "Manager",
+  last_name: "Dupont",
   email: "manager@example.com",
   password: "password123",
-  password_confirmation: "password123",
   role: :manager
 )
 
@@ -16,85 +17,86 @@ alice = User.create!(
   last_name: "Martin",
   email: "alice@example.com",
   password: "password123",
-  password_confirmation: "password123",
   role: :employee
 )
 
 bob = User.create!(
   first_name: "Bob",
-  last_name: "Dupont",
+  last_name: "Lefebvre",
   email: "bob@example.com",
   password: "password123",
-  password_confirmation: "password123",
   role: :employee
 )
 
 charlie = User.create!(
   first_name: "Charlie",
-  last_name: "Durand",
+  last_name: "Moreau",
   email: "charlie@example.com",
   password: "password123",
-  password_confirmation: "password123",
   role: :employee
 )
 
-p1 = Project.create!(
+puts "Création des projets..."
+project1 = Project.create!(
   name: "Refonte Application",
-  description: "Modernisation de l'interface utilisateur et des performances de l'application.",
+  description: "Migration vers Rails 7.2 et modernisation de l'UI/UX.",
   color: "#4f46e5",
   status: :active,
   creator: manager
 )
 
-p2 = Project.create!(
-  name: "Onboarding RH",
-  description: "Parcours d'intégration et documentation des nouveaux collaborateurs.",
+project2 = Project.create!(
+  name: "API Mobile V2",
+  description: "Création des endpoints REST pour l'application iOS et Android.",
   color: "#0284c7",
   status: :active,
   creator: manager
 )
 
-Task.create!([
-  {
-    title: "Concevoir les maquettes du tableau de bord",
-    description: "Créer les wireframes haute fidélité pour le pilotage manager et les KPI d'équipe.",
-    status: :in_progress,
-    priority: :high,
-    creator: manager,
-    assignee: alice,
-    project: p1
-  },
-  {
-    title: "Rédiger le guide d'accueil des employés",
-    description: "Documenter les accès outils, canaux Slack et processus internes.",
-    status: :todo,
-    priority: :medium,
-    creator: manager,
-    assignee: alice,
-    project: p2
-  },
-  {
-    title: "Optimiser les requêtes SQL des tâches",
-    description: "Vérifier les index composites PostgreSQL et supprimer les requêtes N+1.",
-    status: :completed,
-    priority: :urgent,
-    creator: manager,
-    assignee: bob,
-    project: p1
-  },
-  {
-    title: "Mettre en place la documentation d'architecture",
-    description: "Schématiser l'architecture par domaine et les politiques Pundit.",
-    status: :todo,
-    priority: :low,
-    creator: manager,
-    assignee: charlie,
-    project: p1
-  }
-])
+puts "Création des tâches avec complexités..."
+Task.create!(
+  title: "Auditer les dépendances et Gemfile",
+  description: "Mettre à jour les gems critiques et tester la compatibilité Ruby 3.3.",
+  status: :completed,
+  priority: :high,
+  complexity: :simple, # 1 pt
+  creator: manager,
+  assignee: alice,
+  project: project1
+)
 
-puts "✅ Seeds injectés avec succès :"
-puts "   - 1 Manager (#{manager.email})"
-puts "   - 3 Employés (Alice, Bob, Charlie)"
-puts "   - 2 Projets (#{p1.name}, #{p2.name}) liés au Manager"
-puts "   - 4 Tâches initiales"
+Task.create!(
+  title: "Implémenter l'authentification Devise et rôles",
+  description: "Mettre en place Devise avec les rôles manager et employé.",
+  status: :in_progress,
+  priority: :urgent,
+  complexity: :complex, # 3 pts
+  creator: manager,
+  assignee: alice,
+  project: project1
+)
+
+Task.create!(
+  title: "Refactorer l'architecture globale de la base de données",
+  description: "Créer les migrations, les index composites et les clés étrangères.",
+  status: :todo,
+  priority: :medium,
+  complexity: :heavy, # 5 pts
+  creator: manager,
+  assignee: bob,
+  project: project1
+)
+
+Task.create!(
+  title: "Concevoir la documentation Swagger / OpenAPI",
+  description: "Rédiger le contrat d'interface pour les équipes mobiles.",
+  status: :todo,
+  priority: :low,
+  complexity: :medium, # 2 pts
+  creator: manager,
+  assignee: charlie,
+  project: project2
+)
+
+puts "Seed terminé avec succès !"
+puts "Projet 1 points d'effort : #{project1.completed_effort_points}/#{project1.total_effort_points} (#{project1.completion_percentage}%)"
