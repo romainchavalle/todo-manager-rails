@@ -2,4 +2,5 @@ module ApplicationHelper
   include NavigationHelper
   include TasksHelper
   include ProjectsHelper
+  include DashboardHelper
 end

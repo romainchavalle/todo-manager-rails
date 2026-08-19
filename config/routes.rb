@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :projects
 
+  resource :dashboard, only: [:show], controller: "dashboard"
+
   root "tasks#index"
 end
